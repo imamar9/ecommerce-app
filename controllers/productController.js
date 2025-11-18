@@ -3,9 +3,11 @@ const Product = require('../models/product.model');
 const getAllProducts = async (req, res) => {
   try {
     const { category } = req.query;
-    
-    const products = await Product.find({ category });
-    
+    const filter = {};
+    if (category) filter.category = category; 
+
+    const products = await Product.find(filter);
+
     res.status(200).json({
       success: true,
       data: { products }
@@ -18,6 +20,7 @@ const getAllProducts = async (req, res) => {
     });
   }
 };
+
 
 const getProductById = async (req, res) => {
   try {
