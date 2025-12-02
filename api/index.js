@@ -1,12 +1,12 @@
-const express = require('express');
-const cors = require('cors');
-require('dotenv').config();
-const { initializeDB } = require('../config/db'); 
+const express = require("express");
+const cors = require("cors");
+require("dotenv").config();
+const { initializeDB } = require("../config/db");
 
-
-const productRoutes = require('../routes/productRoutes');
-const categoryRoutes = require('../routes/categoryRoutes');
-const orderRoutes = require('../routes/orderRoutes');
+const productRoutes = require("../routes/productRoutes");
+const categoryRoutes = require("../routes/categoryRoutes");
+const orderRoutes = require("../routes/orderRoutes");
+const addressRoutes = require("../routes/addressRoutes"); 
 
 const app = express();
 
@@ -15,12 +15,13 @@ app.use(express.json());
 
 initializeDB();
 
-app.use('/api/products', productRoutes);
-app.use('/api/categories', categoryRoutes);
-app.use('/api/orders', orderRoutes);
+app.use("/api/products", productRoutes);
+app.use("/api/categories", categoryRoutes);
+app.use("/api/orders", orderRoutes);
+app.use("/api/address", addressRoutes); 
 
-app.get('/', (req, res) => {
-  res.json({ message: '🛒 E-commerce API is running with Vercel!' });
+app.get("/", (req, res) => {
+  res.json({ message: "🛒 E-commerce API is running with Vercel!" });
 });
 
 module.exports = app;
